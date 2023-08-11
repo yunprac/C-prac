@@ -4,8 +4,8 @@
 
 int Partition(int A[], int start, int end)
 {
-    //±âº»ÀûÀ¸·Î quicksortÀÇ pivot ¼±Á¤ ÈÄ ±³È¯ °úÁ¤°ú µ¿ÀÏ
-   //º» ¿¹Á¦¿¡¼­ pivotÀº °¡Àå ¿ŞÂÊÀÇ ÀÎµ¦½º¸¦ »ç¿ëÇÏ±â·Î ÇÔ
+    //ê¸°ë³¸ì ìœ¼ë¡œ quicksortì˜ pivot ì„ ì • í›„ êµí™˜ ê³¼ì •ê³¼ ë™ì¼
+   //ë³¸ ì˜ˆì œì—ì„œ pivotì€ ê°€ì¥ ì™¼ìª½ì˜ ì¸ë±ìŠ¤ë¥¼ ì‚¬ìš©í•˜ê¸°ë¡œ í•¨
 
     int pivot = A[start];
     int low = start + 1, high = end;
@@ -34,45 +34,45 @@ int Partition(int A[], int start, int end)
     return high;
 }
 int select_Prob(int A[], int start, int end, int select) {
-    //Ã£°íÀÚ ÇÏ´Â ÀÎµ¦½º°¡ ¹üÀ§ ³»¿¡ Á¸ÀçÇÒ °æ¿ì
+    //ì°¾ê³ ì í•˜ëŠ” ì¸ë±ìŠ¤ê°€ ë²”ìœ„ ë‚´ì— ì¡´ì¬í•  ê²½ìš°
     if (select > 0 && select <= end - start + 1) {
         int pos = Partition(A, start, end);
 
-        if (pos - start == select - 1) {            //Ã£°íÀÚ ÇÏ´Â ¼ıÀÚ¸¦ Ã£Àº °æ¿ì
+        if (pos - start == select - 1) {            //ì°¾ê³ ì í•˜ëŠ” ìˆ«ìë¥¼ ì°¾ì€ ê²½ìš°
             return A[pos];
         }
-        else if (pos - start > select - 1) {      //Ã£°íÀÚ ÇÏ´Â ¼ıÀÚ°¡ small group¿¡ Á¸Àç
+        else if (pos - start > select - 1) {      //ì°¾ê³ ì í•˜ëŠ” ìˆ«ìê°€ small groupì— ì¡´ì¬
             return select_Prob(A, start, pos - 1, select);
         }
-        else {                                            //Ã£°íÀÚ ÇÏ´Â ¼ıÀÚ°¡ large group¿¡ Á¸Àç
+        else {                                            //ì°¾ê³ ì í•˜ëŠ” ìˆ«ìê°€ large groupì— ì¡´ì¬
             return select_Prob(A, pos + 1, end, select - pos + start - 1);
         }
     }
-    return -1; // Å½»ö ½ÇÆĞÇßÀ» °æ¿ì
+    return -1; // íƒìƒ‰ ì‹¤íŒ¨í–ˆì„ ê²½ìš°
 }
 
 int main(void) {
-    int n, index, value;  // n:A size, index: k, value: Å½»öµÈ °ª 
+    int n, index, value;  // n:A size, index: k, value: íƒìƒ‰ëœ ê°’ 
     int* A = NULL;
 
-    printf("¹è¿­ÀÇ Å©±â¸¦ ÀÔ·ÂÇÏ½Ã¿À : ");
+    printf("ë°°ì—´ì˜ í¬ê¸°ë¥¼ ì…ë ¥í•˜ì‹œì˜¤ : ");
     scanf("%d", &n);
 
     A = (int*)malloc(sizeof(int) * n);
-    printf("¹è¿­ÀÇ ¿ø¼Ò¸¦ ÀÔ·ÂÇÏ½Ã¿À : ");
+    printf("ë°°ì—´ì˜ ì›ì†Œë¥¼ ì…ë ¥í•˜ì‹œì˜¤ : ");
     for (int i = 0; i < n; i++) {
         scanf("%d", (A + i));
     }
-    printf("¸î ¹øÂ°ÀÇ ¿ø¼Ò¸¦ Ã£À¸½Ê´Ï±î? : ");
+    printf("ëª‡ ë²ˆì§¸ì˜ ì›ì†Œë¥¼ ì°¾ìœ¼ì‹­ë‹ˆê¹Œ? : ");
     scanf("%d", &index);
     if (index > n) {
         while (index > n) {
-            printf("ÀÔ·ÂµÈ ¿ø¼ÒÀÇ ¹üÀ§¸¦ ¹ş¾î³³´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.\n¸î ¹øÂ°ÀÇ ¿ø¼Ò¸¦ Ã£À¸½Ê´Ï±î? : ");
+            printf("ì…ë ¥ëœ ì›ì†Œì˜ ë²”ìœ„ë¥¼ ë²—ì–´ë‚©ë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.\nëª‡ ë²ˆì§¸ì˜ ì›ì†Œë¥¼ ì°¾ìœ¼ì‹­ë‹ˆê¹Œ? : ");
             scanf("%d", &index);
         }
     }
 
-    value = select_Prob(A, 0, n - 1, n + 1 - index);    // index ¹øÂ°·Î Å« ¼ö = n + 1 - index ¹øÂ° ¼ö  ex) 4¹øÂ°·Î Å« ¼ö = ¿À¸§Â÷¼ø Á¤·Ä ±âÁØ 7¹øÂ° ¼ö
-    printf("Ã£°íÀÚ ÇÏ´Â %d ¹øÂ°·Î Å« ¿ø¼ÒÀÇ °ªÀº %d ÀÔ´Ï´Ù. \n", index, value);
+    value = select_Prob(A, 0, n - 1, n + 1 - index);    // index ë²ˆì§¸ë¡œ í° ìˆ˜ = n + 1 - index ë²ˆì§¸ ìˆ˜  ex) 4ë²ˆì§¸ë¡œ í° ìˆ˜ = ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬ ê¸°ì¤€ 7ë²ˆì§¸ ìˆ˜
+    printf("ì°¾ê³ ì í•˜ëŠ” %d ë²ˆì§¸ë¡œ í° ì›ì†Œì˜ ê°’ì€ %d ì…ë‹ˆë‹¤. \n", index, value);
     return 0;
 }
